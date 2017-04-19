@@ -1,0 +1,16 @@
+/* CSS szukacza */
+/* by skorupa (c) */
+
+body {
+  font-family: Segoe UI,Helvetica,Arial,sans-serif; /* czcionki */
+  color:black;
+}
+
+#container {
+  text-align: center; 
+  background-color: rgba(255,255,255,0.50); 
+  width: 320px; 
+  margin-left: auto; 
+  margin-right: auto;
+  padding:10px;
+}

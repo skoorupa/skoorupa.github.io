@@ -1,0 +1,10 @@
+#c1, #tabs, #innertabs, #itab5,#titlebar {
+  display:none;
+}
+
+#c2 {
+  position:absolute;
+  display:block;
+  top:0;
+  left:0;
+}

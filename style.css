@@ -1,0 +1,32 @@
+body {
+	background-color: black;
+	color:gray;
+	font-family: Helvetica,Arial,sans-serif;
+	text-align: center;
+}
+
+.wynik {
+	color:black;
+	background-color: cyan;
+	text-align: left;
+	width:40%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px 30px 30px 30px;
+	margin-bottom:10px;
+}
+
+hr {
+	width: 200px;
+}
+
+.informacja {
+	color:black;
+	background-color: white;
+	text-align: center;
+	width:50%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 30px 30px 30px 30px;
+	margin-bottom:10px;
+}

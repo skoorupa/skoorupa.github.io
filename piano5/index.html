@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>piano5</title>
+  <meta name="Keywords" content="piano5,pianino,pianino online,pianinko,granie na pianinie">
+  <meta name="Description" content="piano5 to darmowe pianino online! Wejdź i sprawdź!">
+<style>
+
+body {
+  font-family:Helvetica,Arial,sans-serif;
+}
+
+.kl-bialy {
+  background-color:white;
+  border: 2px solid black;
+  height:200px;
+  width:50px;
+  display:inline-block;
+  margin:0px -3px;
+}
+
+#pianinko-in {
+  margin: 5px;
+}
+
+.kl-czarny {
+  background-color:black;
+  border: 2px solid black;
+  height:100px;
+  width:30px;
+  display:inline-block;
+  position:relative;
+  margin-right:0px;
+}
+
+.big-break {
+  width:30px;
+  height:6px;
+  margin:0;
+  background-color:white;
+  display:inline-block;
+}
+
+.normal-break {
+  width:10px;
+  height:6px;
+  margin:0;
+  background-color:white;
+  display:inline-block;
+}
+
+.mini-break {
+  width:5px;
+  height:6px;
+  margin:0;
+  background-color:white;
+  display:inline-block;
+}
+
+.czarne {
+  margin-bottom:-108px;
+}
+
+.oktawa {
+  display:inline-block;
+}
+
+</style>
+</head>
+<body onkeypress="keyDetect(event)">
+
+  <h1>piano5</h1>
+  
+  <div id="pianinko-in">
+    <div id="oktawa-3" class="oktawa">
+        <div class="czarne">
+              <div class="big-break"></div>
+          <div class="klawisz kl-czarny" onclick="playKey('c#',3,this)"></div>
+              <div class="normal-break"></div>
+          <div class="klawisz kl-czarny" onclick="playKey('d#',3,this)"></div>
+              <div class="normal-break"></div>
+              <div class="normal-break"></div>
+              <div class="big-break"></div>
+          <div class="klawisz kl-czarny" onclick="playKey('f#',3,this)" id="trochedalej" style="margin-left: 3px;"></div>
+              <div class="normal-break"></div>
+          <div class="klawisz kl-czarny" onclick="playKey('g#',3,this)"></div>
+              <div class="normal-break"></div>
+          <div class="klawisz kl-czarny" onclick="playKey('a#',3,this)"></div>
+        </div>
+        <div class="biale">
+          <div class="klawisz kl-bialy" onclick="playKey('c',3,this)"></div>
+          <div class="klawisz kl-bialy" onclick="playKey('d',3,this)"></div>
+          <div class="klawisz kl-bialy" onclick="playKey('e',3,this)"></div>
+          <div class="klawisz kl-bialy" onclick="playKey('f',3,this)"></div>
+          <div class="klawisz kl-bialy" onclick="playKey('g',3,this)"></div>
+          <div class="klawisz kl-bialy" onclick="playKey('a',3,this)"></div>
+          <div class="klawisz kl-bialy" onclick="playKey('b',3,this)"></div>
+        </div>
+      </div>
+    <div id="oktawa-4" class="oktawa">
+      <div class="czarne">
+            <div class="big-break"></div>
+        <div class="klawisz kl-czarny" onclick="playKey('c#',4,this)"></div>
+            <div class="normal-break"></div>   
+        <div class="klawisz kl-czarny" onclick="playKey('d#',4,this)"></div>
+            <div class="normal-break"></div>   
+            <div class="normal-break"></div>   
+            <div class="big-break"></div>      
+        <div class="klawisz kl-czarny" onclick="playKey('f#',4,this)" id="trochedalej" style="margin-left: 3px;"></div>
+            <div class="normal-break"></div>   
+        <div class="klawisz kl-czarny" onclick="playKey('g#',4,this)"></div>
+            <div class="normal-break"></div>   
+        <div class="klawisz kl-czarny" onclick="playKey('a#',4,this)"></div>
+      </div>
+      <div class="biale">
+        <div class="klawisz kl-bialy" onclick="playKey('c',4,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('d',4,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('e',4,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('f',4,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('g',4,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('a',4,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('b',4,this)"></div>
+      </div>
+    </div>
+    <div id="oktawa-5" class="oktawa">
+      <div class="czarne">
+            <div class="big-break"></div>
+        <div class="klawisz kl-czarny" onclick="playKey('c#',5,this)"></div>
+            <div class="normal-break"></div>
+        <div class="klawisz kl-czarny" onclick="playKey('d#',5,this)"></div>
+            <div class="normal-break"></div>
+            <div class="normal-break"></div>
+            <div class="big-break"></div>
+        <div class="klawisz kl-czarny" onclick="playKey('f#',5,this)" id="trochedalej" style="margin-left: 3px;"></div>
+            <div class="normal-break"></div>
+        <div class="klawisz kl-czarny" onclick="playKey('g#',5,this)"></div>
+            <div class="normal-break"></div>
+        <div class="klawisz kl-czarny" onclick="playKey('a#',5,this)"></div>
+      </div>
+      <div class="biale">
+        <div class="klawisz kl-bialy" onclick="playKey('c',5,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('d',5,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('e',5,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('f',5,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('g',5,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('a',5,this)"></div>
+        <div class="klawisz kl-bialy" onclick="playKey('b',5,this)"></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- https://github.com/bit101/tones
+       Copyright (c) 2014 Keith Peters -->
+  <script type="text/javascript" src="tones.js"></script>
+  <!-- scripts -->
+  <script type="text/javascript">
+    tones.attack = 0;
+    tones.release = 300;
+    tones.type = "sawtooth";
+  </script>
+  <script type="text/javascript" src="piano5.js"></script>
+</body>
+</html>

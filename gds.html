@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- source: http://jsbin.com/generatordziwnychslow/2 -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <h1>GENERATOR DZIWNYCH SŁÓW XD</h1>
+  
+  Wpisz długość dziwnego słowa (liczba):<input id="ile">
+  <button onclick="g()">GENERUJ XD</button><br>
+  OK = jeszcze raz<br>
+  Anuluj = STOP
+<script id="jsbin-javascript">
+var l;
+var lit = "qwertyuiopasdfghjklzxcvbnm";
+var s = "";
+var tmp;
+var licz=0;
+
+
+function get(id){ 
+  return document.getElementById(id);
+} 
+
+function g(){
+  licz++;
+  l = Number(get("ile").value);
+  if(l==0){
+    l=Math.floor(Math.random()*100);
+  }
+  if(licz==13){
+  s="anubis";
+  licz=0;
+  } else {
+  for(var i=0;i<l;i++){
+    s+=lit[rnd()];
+  }
+  }
+  if(prompt("Oto DZIWACZNE (O.o) słowo:",s)){
+    s="";
+    g();
+  } else s="";
+}
+
+function rnd(){
+  tmp=Math.floor(Math.random()*100);
+  if(tmp>lit.length-1){
+    return rnd();
+  } else return tmp;
+}
+</script>
+</body>
+</html>

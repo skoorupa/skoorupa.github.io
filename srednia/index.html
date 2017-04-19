@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Średnia ocen</title>
+  <script type="text/javascript" src="run.js"></script>
+  <style>
+    body {
+      font-family:Helvetica,Arial,sans-serif;
+    }
+  </style>
+</head>
+<body>
+  
+  <h1>Średnia ocen</h1>
+  <div id="container">
+    <div id="markbox">
+      
+    </div>
+    
+    <input id="title" placeholder="Nazwa przedmiotu">
+    <input id="mark" placeholder="Twoja ocena (wymagane)" required>
+    <button onclick="addMark()">Dodaj</button>
+    <br><br>
+    
+    <div id="median">
+      Twoja średnia: <span id="medianContext">brak danych</span>
+    </div>
+  </div>
+  
+</body>
+</html>

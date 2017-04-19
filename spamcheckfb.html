@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SpamCheck FB</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+		}
+	</style>
+  <script type="text/javascript">
+    var version = "1.3e";
+    if (location.search.substr(1,location.search.length-1)!=version&&location.search!=""&&location.search!="?"){
+      alert("Jest nowsza wersja SpamCheck FB! \nZaktualizuj ją, by usunąć więcej aplikacji")
+    } else if(location.search!=""&&location.search!="?"){
+      location.href="https://www.facebook.com/settings?tab=applications";
+    }
+  </script>
+</head>
+<body>
+
+	<div style="background-color:cyan;font-size:40px;font-weight:bold;padding:10px 15px;">SpamCheck FB</div>
+  <div style="margin-left: 20px; display:inline-block;padding:20px 0px;">Przestań wysyłać nieświadomie spam. Usuń go z SpamCheck FB - programikiem od Skorupy.</div><br>
+  <img src="img/spamfb.png" style="border: 3px solid red; margin-left: 20px;">
+	<ul>
+    <h3>Instalowanie skryptozakładki</h3>
+    
+    <ol>
+      <li>Włącz w swojej przeglądarce pasek zakładek. (gdzieś w Widok)</li>
+      <li>Przeciągnij link obok na pasek zakładek. <a href="javascript:(function(d,l){var mv='1.3e';if(l.href=='https://www.facebook.com/settings?tab=applications'){var blacklist={'names':['Edytowany','Edytowano','Edytowane','fejs','fejsbuk','facebook','',' ','&nbsp;','fcgol','Ripostuj','Komu możesz zaufać?','obrazkowe','Smiechawa24'],'src':['jazdaa.pl','geek24.pl','kozackie24.pl']};var spc=d.getElementById('SettingsPage_Content');var appbox=spc.children[0].children[1].children[0].children[1].children[0];var apps=appbox.children;var logbox=d.createElement('div');logbox.setAttribute('style','background-color:lime;position:fixed;z-index:9999;top:0 !important;padding:5px;right:0 !important;');logbox.innerHTML='<b>Czyściciel FB</b> <button onclick=\'document.body.removeChild(this.parentNode)\' style=\'float:right !important;\'>X</button><br><br>';for(var i=0;i<apps.length;i++){for(var j=0;j<blacklist.names.length;j++){if(apps[i].children[0].children[1].children[1].children[0].children[0].innerHTML == blacklist.names[j]){logbox.setAttribute('style','background-color:red;position:fixed;z-index:9999;top:0 !important;padding:5px;right:0 !important;');apps[i].style.backgroundColor='red';var ibox=d.createElement('div');ibox.innerHTML='Wykryto: '+apps[i].children[0].children[1].children[1].children[0].children[0].innerHTML;logbox.appendChild(ibox);}}}logbox.innerHTML+='<br><br>Zakończono sprawdzanie!';d.body.appendChild(logbox);}else{l.href='http://zaxad23.github.io/spamcheckfb?'+mv;}})(document,location);" onclick="alert('Przeciągnij, nie kliknij!!!');return false;">SpamCheck FB</a></li>
+      <li>Koniec.</li>
+    </ol>
+    <h3>Używanie</h3>
+      <ol>
+        <li>2 razy kliknij w zakładkę.</li>
+        <li>Usuń wyznaczone aplikacje.</li>
+        <li>Koniec.</li>
+      </ol>
+  </ul>
+
+  <div style="background-color:cyan;font-size:40px;font-weight:bold;padding:10px 15px;">&nbsp;</div>
+</body>
+</html>

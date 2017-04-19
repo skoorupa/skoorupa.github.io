@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generator Gandalfa</title>
+  <link rel="stylesheet" href="screengsgen.css" media="screen">
+  <link rel="stylesheet" href="printgsgen.css" media="print">
+</head>
+<body>
+
+  <div id="titlebar">
+    <b>Generator Gandalfa</b>
+  </div>
+  <div id="canvasy">
+  
+    <canvas width="500" height="200" id="c1" style="border:1px solid black;">
+      ups... zaktualizuj przeglądarkę lub przejdź na Chrome<br>
+      na pocieszenie zjedz ciasteczko.
+    </canvas>
+    <canvas width="500" height="800" id="c2" style="border:1px solid black;float:right;width:500px;">
+      ups... zaktualizuj przeglądarkę lub przejdź na Chrome
+    </canvas>
+    
+  </div>
+  <div id="innertabs">
+  
+  <span id="itab1">
+    <div>
+    
+      
+      Szerokość klatki: <input id="width"> 
+      Wysokość klatki: <input id="height">
+      <button onclick="update('klatka')">Zaktualizuj</button>
+      <br>
+      Szerokość <input id="widthx">
+      Wysokość <input id="heightx">
+      <button onclick="update('all')">Zaktualizuj</button>
+    
+    </div>
+  </span>
+  <span id="itab2">
+    <input type="button" value="Odbicie" onclick="lustro()"></input>
+    <input type="button" id="tab4" class="tab" value="Dodaj Własnego Bohatera" onclick="dodaj1()"></input>
+    <button id="1" class="bohater">Dodaj Gandalfa</button>
+    <button id="2" class="bohater">Dodaj Barana</button>
+    <button id="3" class="bohater">Dodaj Wata</button>
+    <button id="4" class="bohater">Dodaj Hipisa</button>
+    <button id="5" class="bohater">Dodaj Inżyniera</button>
+    <button id="6" class="bohater">Dodaj Wensza</button>
+  </span>
+  <span id="itab3">
+    Tekst: 
+    <input id="tekst">
+    <button onclick="tekst()">Dodaj</button><br>
+    Zmień kolor tekstu (ENG):<input value="black" id="tekstcolor"><button onclick="ctx1.fillStyle = document.getElementById('tekstcolor').value;">Zmień</button><br>
+      Czcionka (font):<input value="Arial" id="font"><button onclick="ctx1.font=ID('fontsize').value+' '+ID('font').value;">Zmień</button><br>
+      Wielkość:<input value="30px" id="fontsize"><button onclick="ctx1.font=ID('fontsize').value+' '+ID('font').value;">Zmień</button>
+  </span>
+  <span id="itab4">
+    <canvas id="c4" width="125" height="125" style="border:1px solid black;background-color:white;">
+      NIE RYSUJ....
+    </canvas><br>
+    <span style="padding:3px;background-color:#D18800;padding-left:40px;padding-right:40px;" onclick="dodaj2()">Stwórz</span>
+  </span>
+  <span id="itab5">
+    <a id="download" download="twojgandalf"><button>▼ Pobierz</button></a>
+    lub
+    <button onclick="drukuj()">Wydrukuj</button>
+  </span>
+  <span id="itab6">
+    <b>Generator Gandalfa</b> by <i>SKORUPA entertaiment</i><br>
+    Webdesigner/Opiekun/Twórca - <b>Adam Skorupski "Skorupa"</b>.<br>
+    Wersja 2.0.a5 <b>BETA</b><br>
+    <b>UWAGA!: </b> To jest <u>wersja testowa</u>, zawiera błędy!<br>
+    <a href="https://googledrive.com/host/0B4fCpZ7fiqZ7ZHZhT3VTWXhOSFU/gs/generator">strona na Google Drive</a><br>
+  </span>
+  </div>
+  <div id="tabs">
+    <center>
+      <span id="tab1" class="tab">Wymiary</span> |
+      <span id="tab2" class="tab">Bohaterzy</span> |
+      <span id="tab3" class="tab">Tekst</span> |
+      <span class="tabbutton" onclick="dodajslajd()">Dodaj slajd</span> |
+      <span id="tab5" class="tab">Gotowe</span> |
+      <span id="tab6" class="tab">Info</span>
+    </center>
+  </div>
+  <!-- zakładki -->
+  <script type="text/javascript">
+    function id(ID){
+      return document.getElementById(ID);
+    }
+    function klasa(kl){
+      return document.getElementsByClassName(kl);
+    }
+    var tabl=klasa("tab").length;
+    var i;
+    var showtab="zero";
+    //id("tab1").style.fontWeight="bold";
+    for(i=1;i<=tabl;i++){
+      id("itab"+i).style.display="none";
+    }
+    for(var j=1;j<=tabl;j++){
+      id("tab"+j).setAttribute("onclick","changetab(this)");
+      id("tab"+j).setAttribute("onmouseover","this.style.textDecoration='underline'");
+      id("tab"+j).setAttribute("onmouseout","this.style.textDecoration='none'");
+      id("tab"+j).style.cursor = "pointer";
+    }
+    function changetab(element){
+      if(showtab!="zero"){
+      id("i"+showtab).style.display="none";
+      id(showtab).style.fontWeight="normal";
+      }
+      if("i"+element.id=="i"+showtab){
+      id("i"+showtab).style.display="none";
+      showtab="zero";
+      id("innertabs").style.display="none";
+      } else {
+      id("innertabs").style.display="block";
+      id("i"+element.id).style.display="block";
+      showtab=element.id;
+      id(element.id).style.fontWeight="bold";
+      }
+    }
+    
+    // dalej to responsywność zakładek
+    
+    var x=document.body.clientWidth;
+    x=x-40;
+    document.getElementById("tabs").style.width = x+"px";
+    x2=x-73;
+    document.getElementById("titlebar").style.width = x+"px";
+    var itabheight = id("innertabs").clientHeight;
+    var y=id("titlebar").clientHeight;
+    var y2=id("tabs").clientHeight;
+    
+    id("canvasy").style.marginTop=y+"px";
+    id("canvasy").style.marginBottom=(y2+itabheight)*8.5+"px";
+    id("innertabs").style.display="none";
+    id("innertabs").style.marginBottom=y2+"px";
+    id("innertabs").style.width=x+40+"px";
+    
+    id("tab4").setAttribute("onclick","changetab(this);dodaj1();");
+    id("tab5").setAttribute("onclick","changetab(this);gotowe();");
+  </script>
+  <!-- silnik generatora -->
+  <script type="text/javascript" charset="UTF-8">
+    // by skorupa
+// nie kradnij, nie na darmo pisałem około 300 linii kodu który DZIAŁA
+
+var c1      = document.querySelector('#c1'),
+    c2      = document.querySelector('#c2'),
+    c3      = document.createElement('canvas');
+    
+var ctx1    = c1.getContext('2d'),
+    ctx2    = c2.getContext('2d'),
+    ctx3    = c3.getContext('2d'),
+    i1      = document.querySelector('#width'),
+    i2      = document.querySelector('#height'),
+    i3      = document.querySelector('#widthx'),
+    i4      = document.querySelector('#heightx'),
+    i5      = document.querySelector('#tekst'),
+    txtimg  = document.createElement('img'),
+    history1= 0,
+    wysnow  = 0,
+    szernow = 0,
+    szer,
+    wys,
+    szerall,
+    wysall,
+    curimg,
+    txt,
+    cur,
+    slajd   = new Image(),
+    txthist,
+    szerprev,
+    pointer,
+    wysprev,
+    firefoxstupido = document.createElement("canvas");
+    
+fsctx = firefoxstupido.getContext("2d");
+    
+i1.value    = "500";
+i2.value    = "200";
+i3.value    = "500";
+i4.value    = "800";
+
+function wymiary(){
+   v1 = i1.value;
+   v2 = i2.value;
+   v3 = i3.value;
+   v4 = i4.value;
+}
+
+wymiary();
+
+function nabiale(){
+   ctx1.fillStyle="white";
+   ctx1.fillRect(0,0,v1,v2);
+   ctx1.lineWidth=5;
+   ctx1.fillStyle="black";
+   ctx1.moveTo(v1,0);
+   ctx1.lineTo(v1,v2);
+   ctx1.lineTo(0,v2);
+   ctx1.lineTo(0,0);
+   ctx1.lineTo(v1,0);
+   ctx1.stroke();
+   // ctx1.fillStyle="white";
+}
+
+nabiale();
+
+function update(is){
+   wymiary();
+   if(is=='klatka'){
+      c1.setAttribute("width" ,i1.value);
+      c1.setAttribute("height",i2.value);
+      nabiale();
+   } else if(is=='all'){
+      c2.setAttribute("width" ,i3.value);
+      c2.style.width=i3.value;
+      c2.setAttribute("height",i4.value);
+      history1=0;
+      wysnow=0;
+   } else {
+      alert('error, gandalf nie może się ani wychudzić ani przytyć\nspróbuj ponownie');
+   }
+}
+
+var dodaj = document.querySelectorAll(".bohater").length;
+
+for (i=0;i<dodaj;i++){
+   document.querySelectorAll('.bohater')[i].setAttribute("onclick","plus(this)");
+}
+
+function plus(arg){
+   curimg = String(arg.id)+'.png';
+   cur = document.createElement('img');
+   cur.src = curimg;
+   
+   console.log(cur);
+   // ctx5.translate(c5.width / 2, c5.height / 2);
+   setTimeout(function(){ctx5.drawImage(cur,0,0);},500);
+   // c1.style.cursor = "url('"+arg.id+".png', default)";
+   c1.setAttribute('style',"cursor: url('"+arg.id+".png'), default");
+}
+
+c1.setAttribute('onclick','bohater(event)');
+
+function bohater(arg){
+   ctx1.drawImage(cur,arg.pageX - c1.offsetLeft,arg.pageY - c1.offsetTop-y);
+}
+
+ctx1.fillStyle="black";
+
+function tekst(){
+   txt = i5.value;
+   txthist = c1.toDataURL('image/png');
+   txtimg.src = txthist;
+   c1.setAttribute('onmousemove','exampletxt(event)');
+   c1.removeAttribute('style');
+}
+
+ctx1.font="30px Arial";
+
+function exampletxt(arg){
+   ctx1.drawImage(txtimg,0,0);
+   ctx1.fillText(txt,arg.pageX - c1.offsetLeft,arg.pageY - c1.offsetTop);
+   c1.setAttribute('onclick','endtxt(event)');
+}
+
+function endtxt(arg){
+   ctx1.fillText(txt,arg.pageX - c1.offsetLeft,arg.pageY - c1.offsetTop);
+   c1.removeAttribute('onmousemove','exampletxt(event)');
+   c1.removeAttribute('onclick','endtxt(event)');
+   c1.setAttribute('onclick','bohater(event)');
+}
+
+function dodajslajd(){
+   // slajd = new Image();
+   slajd.src = c1.toDataURL('image/png');
+   szer=Number(v1);
+   wys=Number(v2);
+   if(history1===0){
+      history1++;
+      szerall=v3;
+      wysall =Number(v4);
+      pointer2=0;
+      // szernow=Number(v3);
+      if(szer>v3){
+         alert("error, szerokość klatki jest większa od szerokości komiksu.");
+         return;
+      } else if(wys>v4){
+         alert("error, wysokość klatki jest większa od wysokości komiksu.");
+      } else {
+         ctx2.drawImage(slajd,0,0);
+         // szerall=szerall-szer;
+         // wysall=wysall-wys;
+         wysprev=wys;
+         szerprev=szer;
+         console.log("...");
+         wysnow = wysnow+wys;
+         szernow = szernow+szer;
+         pointer=0;
+         if(navigator.mozGetUserMedia){
+            console.log("wykryto firefoxa")
+            wysnow=0;
+            szernow=0;
+            setTimeout(function(){ctx2.drawImage(slajd,0,0);},10);
+            wysnow = wysnow+wys;
+            szernow = szernow+szer;
+         }
+         console.log(pointer);
+      }
+   } else if(history1>0){
+      /* if(szer<szerall){
+         ctx2.drawImage(slajd,0,wysprev);
+         szerall=szerall-szer;
+         wysall=wysall-wys;
+         wysprev=wys;
+         szerprev=szer;
+         console.log("szer>szerall");
+      } else */ if(wys>Number(v4)){
+         alert("Koniec komiksu!!!"); 
+      } else if(szernow+szer<szerall){
+         ctx2.drawImage(slajd,szernow,pointer);
+         setTimeout(function(){
+            ctx2.drawImage(slajd,szernow-szer,pointer);
+         },10);
+         // wysall=wysall+wys;
+         wysprev=wys;
+         szerprev=szer;
+         console.log("nowy sposób");
+         szernow = szernow+szer;
+         // pointer=wysall-wys;
+         console.log(pointer+"   "+pointer2);
+      } else {
+         ctx2.drawImage(slajd,0,wysnow);
+         setTimeout(function(){ctx2.drawImage(slajd,0,wysnow-wys);},10);
+         // szerall=szerall-szer;
+         // wysall=wysall+wys;
+         pointer=pointer+wysprev;
+         wysprev=wys;
+         szerprev=szer;
+         console.log("normal");
+         wysnow = wysnow+wys;
+         szernow = 0;
+         szernow = szernow+szer;
+         pointer2=wysall-wys;
+         console.log(pointer);
+      }
+   } else {
+      alert("error :(");
+   }
+}
+
+function gotowe(){
+   slajd.src=c2.toDataURL('image/png');
+   a=document.querySelector('#download');
+   a.setAttribute('href',slajd.src);
+}
+
+console.log("większość komunikatów tutaj to komunikaty które ułatwiają mi poprawianie");
+
+var c4   = document.querySelector('#c4'),
+    c5   = document.createElement('canvas');
+    
+c5.width="125";    
+c5.height="125";    
+    
+var ctd  = c4.getContext('2d');
+var ctx5 = c5.getContext('2d');
+
+function dodaj1(){
+   c4.setAttribute('onmouseup', 'mouseup()');
+   c4.setAttribute('onmousedown', 'mousedown(event)');
+   c4.setAttribute('onclick', 'isclick(event)');
+}
+
+function write(e){
+  ctd.lineTo(e.pageX - c4.offsetLeft,e.pageY - DWBdata.resultcalc);
+  ctd.stroke();
+  ctd.lineWidth = 1;
+  ctd.strokeStyle = 'black';
+  ctd.lineCap = 'round';
+  console.log(String(e.pageX - c4.offsetLeft)+"    "+String(e.pageY - DWBdata.resultcalc));
+}
+
+function mousedown(e){
+  c4.addEventListener('mousemove', write, false);
+  ctd.beginPath();
+}
+
+function mouseup(){
+  c4.removeEventListener('mousemove', write, false);
+}
+
+function dodaj2(){
+   id("i"+showtab).style.display="none";
+   id("innertabs").style.display="none";
+   showtab="zero";
+   id("tab4").style.fontWeight="normal";
+   
+   cur = new Image();
+   cur.src = c4.toDataURL('image/png');
+   
+   c1.removeAttribute('style');
+   c1.setAttribute('style',"cursor: url('"+cur.src+"'), default");
+   c1.setAttribute('onclick','bohater(event)');
+   
+   c4.width = '20';
+   c4.width = '125';
+}
+
+function isclick(e){
+  ctd.beginPath();
+  ctd.lineTo(e.pageX - c4.offsetLeft,e.pageY - DWBdata.resultcalc);
+  ctd.stroke();
+  ctd.lineWidth = 5;
+  ctd.strokeStyle = 'black';
+  ctd.lineCap = 'round';
+  console.log(String(e.pageX - c4.offsetLeft)+"    "+String(e.pageY - DWBdata.resultcalc));
+}
+
+function lustro(){
+   ctx5.clearRect(0, 0, c5.width, c5.height);
+   ctx5.translate(125,0);
+   ctx5.scale(-1, 1);
+   ctx5.drawImage(cur,0,0);
+   odbicie = c5.toDataURL("image/png");
+   c1.setAttribute('style',"cursor: url('"+odbicie+"'), default");
+   cur.src = odbicie; 
+}
+
+function ID(id){
+   return document.getElementById(id);
+}
+
+function drukuj(){
+   id('itab5').style.display='none';
+   id('innertabs').style.display='none';
+   print();
+}
+
+// głupi dodaj własnego bohatera!! :/
+
+var DWBdata = {};
+
+DWBdata.clientZ = document.body.clientHeight;
+DWBdata.tabsclientZ = ID("tabs").clientHeight;
+ID("itab4").style.display = "block";
+ID("innertabs").style.display = "block";
+DWBdata.itabclientZ = ID("innertabs").clientHeight;
+ID("itab4").style.display = "none";
+ID("innertabs").style.display = "none";
+
+DWBdata.resultcalc = DWBdata.clientZ - DWBdata.itabclientZ - DWBdata.tabsclientZ+10;
+
+// dalej to responsywność zakładek
+
+var x=document.body.clientWidth;
+x=x-40;
+document.getElementById("tabs").style.width = x+"px";
+x2=x-73;
+document.getElementById("titlebar").style.width = x+"px";
+var itabheight = id("innertabs").clientHeight;
+var y=id("titlebar").clientHeight;
+var y2=id("tabs").clientHeight;
+
+id("canvasy").style.marginTop=y+"px";
+id("canvasy").style.marginBottom=(y2+itabheight)*8.5+"px";
+id("innertabs").style.display="none";
+id("innertabs").style.marginBottom=y2+"px";
+id("innertabs").style.width=x+40+"px";
+
+id("tab4").setAttribute("onclick","changetab(this);dodaj1();");
+id("tab5").setAttribute("onclick","changetab(this);gotowe();");
+  </script> 
+</body>
+</html>
